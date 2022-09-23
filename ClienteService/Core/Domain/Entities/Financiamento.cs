@@ -10,8 +10,9 @@ namespace Domain.Entities
     public class Financiamento
     {
         public int Id { get; set; }
-        public string Cpf { get; set; }
         public TipoFinanciamento TipoFinanciamento { get; set; }
+        public Cliente Cliente { get; set; }
+        public IEnumerable<Parcela> Parcelas { get; set; }
         public decimal ValorTotal { get; set; }
         public DateTime DataUltimoVencimento { get; set; }
     }
