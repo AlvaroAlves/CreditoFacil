@@ -28,7 +28,19 @@ namespace API.Controllers
             };
             var res = await _clienteManager.CreateCliente(request);
             if (res.Success) return Created("",res.Data);
-            if(res.ErrorCode == ErrorCodes.NOT_FOUND)
+            if (res.ErrorCode == ErrorCodes.MISSING_REQUIRED_INFORMATION)
+            {
+                return BadRequest(res);
+            }
+            if (res.ErrorCode == ErrorCodes.INVALID_CPF)
+            {
+                return BadRequest(res);
+            }
+            if (res.ErrorCode == ErrorCodes.COULD_NOT_STORE_DATA)
+            {
+                return BadRequest(res);
+            }
+            if (res.ErrorCode == ErrorCodes.NOT_FOUND)
             {
                 return BadRequest(res);
             }

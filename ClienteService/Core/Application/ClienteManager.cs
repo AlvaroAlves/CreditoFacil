@@ -2,6 +2,7 @@
 using Application.Clientes.Requests;
 using Application.Clientes.Responses;
 using Application.Ports;
+using Domain.Exceptions;
 using Domain.Ports;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,29 @@ namespace Application
             try
             {
                 var cliente = ClienteDTO.MapToEntity(clienteRequest.Data);
-                clienteRequest.Data.Cpf = await _repository.Create(cliente);
+                await cliente.Save(_repository);
                 return new ClienteResponse
                 {
                     Data = clienteRequest.Data,
                     Success = true
+                };
+            }
+            catch (InvalidCpfException)
+            {
+                return new ClienteResponse
+                {
+                    ErrorCode = ErrorCodes.INVALID_CPF,
+                    Success = false,
+                    Message = "O CPF informado é nulo ou inválido."
+                };
+            }
+            catch (MissingRequiredInformationException)
+            {
+                return new ClienteResponse
+                {
+                    ErrorCode = ErrorCodes.MISSING_REQUIRED_INFORMATION,
+                    Success = false,
+                    Message = "As informações obrigatórias não foram informadas."
                 };
             }
             catch (Exception)
