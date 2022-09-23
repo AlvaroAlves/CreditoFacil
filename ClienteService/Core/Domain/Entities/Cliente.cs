@@ -13,16 +13,17 @@ namespace Domain.Entities
 
         private void ValidateState()
         {
+            if (string.IsNullOrEmpty(Nome) || string.IsNullOrEmpty(UF) || string.IsNullOrEmpty(Celular))
+            {
+                throw new MissingRequiredInformationException();
+            }
+
             if(string.IsNullOrEmpty(Cpf) || 
                 !Utils.IsCpf(Cpf))
             {
                 throw new InvalidCpfException();
             }
 
-            if (string.IsNullOrEmpty(Nome) || string.IsNullOrEmpty(UF) || string.IsNullOrEmpty(Celular))
-            {
-                throw new MissingRequiredInformationException();
-            }
         }
 
         public async Task Save(IClienteRepository _repository)
