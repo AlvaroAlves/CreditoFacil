@@ -5,6 +5,6 @@ namespace Domain.Ports
     public interface IClienteRepository
     {
         Task<Cliente> Get(string cpf);
-        Task<string> Save(Cliente cliente);
+        Task<string> Create(Cliente cliente);
     }
 }

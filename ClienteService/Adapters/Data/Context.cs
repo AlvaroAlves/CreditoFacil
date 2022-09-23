@@ -1,5 +1,5 @@
 ﻿using Data.Configuration;
-using Domain.Entities;
+using Entities = Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data
@@ -8,9 +8,9 @@ namespace Data
     {
         public Context(DbContextOptions<Context> options) : base(options){ }
 
-        public virtual DbSet<Cliente> Clientes { get; set; }
-        public virtual DbSet<Financiamento> Financiamentos { get; set; }
-        public virtual DbSet<Parcela> Parcelas { get; set; }
+        public virtual DbSet<Entities.Cliente> Clientes { get; set; }
+        public virtual DbSet<Entities.Financiamento> Financiamentos { get; set; }
+        public virtual DbSet<Entities.Parcela> Parcelas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
