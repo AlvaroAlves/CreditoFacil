@@ -107,5 +107,19 @@ namespace ApplicationTests
             Assert.AreEqual(response.ErrorCode, ErrorCodes.MISSING_REQUIRED_INFORMATION);
             Assert.False(response.Success);
         }
+
+        [Test]
+        public async Task DeveRetornarNotFoundQuandoUserNaoExiste()
+        {
+            var fakeRepo = new Mock<IClienteRepository>();
+            fakeRepo.Setup(x => x.Create(It.IsAny<Cliente>())).Returns(Task.FromResult("10994999097"));
+            fakeRepo.Setup(x => x.Get("12312312332")).Returns(Task.FromResult<Cliente?>(null));
+            clienteManager = new ClienteManager(fakeRepo.Object);
+
+            var response = await clienteManager.GetCliente("12312312332");
+            Assert.IsNotNull(response);
+            Assert.AreEqual(response.ErrorCode, ErrorCodes.NOT_FOUND);
+            Assert.False(response.Success);
+        }
     }
 }

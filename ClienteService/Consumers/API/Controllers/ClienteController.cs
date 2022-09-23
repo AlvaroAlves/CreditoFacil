@@ -29,21 +29,25 @@ namespace API.Controllers
             var res = await _clienteManager.CreateCliente(request);
             if (res.Success) return Created("",res.Data);
             if (res.ErrorCode == ErrorCodes.MISSING_REQUIRED_INFORMATION)
-            {
                 return BadRequest(res);
-            }
-            if (res.ErrorCode == ErrorCodes.INVALID_CPF)
-            {
+            else if (res.ErrorCode == ErrorCodes.INVALID_CPF)
                 return BadRequest(res);
-            }
-            if (res.ErrorCode == ErrorCodes.COULD_NOT_STORE_DATA)
-            {
+            else if (res.ErrorCode == ErrorCodes.COULD_NOT_STORE_DATA)
                 return BadRequest(res);
-            }
+            else if (res.ErrorCode == ErrorCodes.NOT_FOUND)
+                return BadRequest(res);
+            
+            _logger.LogError("Código de erro não tratado", res);
+            return BadRequest(res);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<ClienteDTO>> Get(string cpf)
+        {
+            var res = await _clienteManager.GetCliente(cpf);
+            if (res.Success) return Ok(res.Data);
             if (res.ErrorCode == ErrorCodes.NOT_FOUND)
-            {
-                return BadRequest(res);
-            }
+                return NotFound(res);
             _logger.LogError("Código de erro não tratado", res);
             return BadRequest(res);
         }

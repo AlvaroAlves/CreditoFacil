@@ -19,5 +19,16 @@ namespace Application.Clientes.DTO
                 UF = clienteDto.UF
             };
         }
+
+        public static ClienteDTO MapToDTO(Cliente cliente)
+        {
+            return new ClienteDTO
+            {
+                Cpf = cliente.Cpf,
+                Celular = cliente.Celular,
+                Nome = cliente.Nome,
+                UF = cliente.UF
+            };
+        }
     }
 }

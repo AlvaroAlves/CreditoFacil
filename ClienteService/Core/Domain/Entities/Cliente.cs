@@ -30,7 +30,8 @@ namespace Domain.Entities
         {
             this.ValidateState();
 
-            if (_repository.Get(Cpf) == null)
+            var cliente = await _repository.Get(Cpf);
+            if (cliente == null)
             {
                 this.Cpf = await _repository.Create(this);
             }

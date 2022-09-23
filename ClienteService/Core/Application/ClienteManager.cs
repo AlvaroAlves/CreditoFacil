@@ -60,5 +60,25 @@ namespace Application
             }
             
         }
+
+        public async Task<ClienteResponse> GetCliente(string cpf)
+        {
+            var res = await _repository.Get(cpf);
+            
+            if(res == null)
+                return new ClienteResponse
+                {
+                    ErrorCode = ErrorCodes.NOT_FOUND,
+                    Success = false,
+                    Message = "Não foi encontrado um cliente com o CPF informado."
+                };
+
+            return new ClienteResponse
+            {
+                Data = ClienteDTO.MapToDTO(res),
+                Success = true
+            };
+            
+        }
     }
 }

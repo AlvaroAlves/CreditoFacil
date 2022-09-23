@@ -11,5 +11,6 @@ namespace Application.Ports
     public interface IClienteManager
     {
         Task<ClienteResponse> CreateCliente(CreateClienteRequest clienteRequest);
+        Task<ClienteResponse> GetCliente(string cpf);
     }
 }

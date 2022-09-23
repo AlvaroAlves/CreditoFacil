@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Clientes
 {
@@ -23,9 +24,9 @@ namespace Data.Clientes
             return cliente.Cpf;
         }
 
-        public Task<Cliente> Get(string cpf)
+        public Task<Cliente?> Get(string cpf)
         {
-            throw new NotImplementedException();
+            return _context.Clientes.Where(c => c.Cpf == cpf).FirstOrDefaultAsync();
         }
     }
 }
