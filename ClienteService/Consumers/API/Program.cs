@@ -1,4 +1,8 @@
+using Application;
+using Application.Ports;
 using Data;
+using Data.Clientes;
+using Domain.Ports;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +10,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+#region IoC
+builder.Services.AddScoped<IClienteManager, ClienteManager>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+#endregion
+
+
 var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<Context>(
     options => options.UseSqlServer(connectionString)
