@@ -27,7 +27,7 @@ namespace Application
                 await cliente.Save(_repository);
                 return new ClienteResponse
                 {
-                    Data = clienteRequest.Data,
+                    Data = ClienteDTO.MapToDTO(cliente),
                     Success = true
                 };
             }

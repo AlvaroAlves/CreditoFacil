@@ -22,6 +22,17 @@ namespace Application.Clientes.DTO
             };
         }
 
+        public static Cliente MapToEntity(InsertClienteDTO clienteDto)
+        {
+            return new Cliente
+            {
+                Cpf = clienteDto.Cpf,
+                Celular = clienteDto.Celular,
+                Nome = clienteDto.Nome,
+                UF = clienteDto.UF
+            };
+        }
+
         public static ClienteDTO MapToDTO(Cliente cliente)
         {
             return new ClienteDTO

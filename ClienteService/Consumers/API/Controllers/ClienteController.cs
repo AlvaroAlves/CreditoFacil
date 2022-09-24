@@ -20,7 +20,7 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ClienteDTO>> Post(ClienteDTO cliente)
+        public async Task<ActionResult<ClienteDTO>> Post(InsertClienteDTO cliente)
         {
             var request = new CreateClienteRequest
             {

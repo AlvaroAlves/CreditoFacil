@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Financiamentos.Requests
 {
-    public class GetFinanciamentoRequestcs
+    public class GetFinanciamentoWithCpfRequest
     {
         public int Id { get; set; }
         public int Cpf { get; set; }

@@ -25,7 +25,7 @@ namespace ApplicationTests
         {
             var expectedCpf = "10994999097";
             //cpf gerado a partir de ferramenta automatica
-            var cliente = new ClienteDTO
+            var cliente = new InsertClienteDTO
             {
                 Celular = "41999992222",
                 Cpf = "10994999097",
@@ -47,7 +47,7 @@ namespace ApplicationTests
         [Test]
         public async Task DadoCpfInvalidoDeveRetornarErrorCodeInvalidCPF()
         {
-            var cliente = new ClienteDTO
+            var cliente = new InsertClienteDTO
             {
                 Celular = "41999992222",
                 Cpf = "4999097",
@@ -69,7 +69,7 @@ namespace ApplicationTests
         [Test]
         public async Task DadoObjetoVazioDeveRetornarMissingRequiredInformation()
         {
-            var cliente = new ClienteDTO();
+            var cliente = new InsertClienteDTO();
 
             var request = new CreateClienteRequest
             {
@@ -89,7 +89,7 @@ namespace ApplicationTests
         [TestCase("10994999097", "41999992222", "", "PR")]
         public async Task DeveRetornarMissingRequiredInformationQuandoInformadoAlgumCampoNecessarioVazio(string cpf, string celular, string nome, string uf)
         {
-            var cliente = new ClienteDTO()
+            var cliente = new InsertClienteDTO()
             {
                 Celular = celular,
                 Cpf = cpf,

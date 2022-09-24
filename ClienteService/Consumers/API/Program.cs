@@ -1,9 +1,11 @@
 using Application;
 using Application.Financiamentos.Ports;
+using Application.Parcelas.Ports;
 using Application.Ports;
 using Data;
 using Data.Clientes;
 using Data.Financiamentos;
+using Data.Parcelas;
 using Domain.Ports;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +20,8 @@ builder.Services.AddScoped<IClienteManager, ClienteManager>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddScoped<IFinanciamentoManager, FinanciamentoManager>();
 builder.Services.AddScoped<IFinanciamentoRepository, FinanciamentoRepository>();
-
+builder.Services.AddScoped<IParcelaManager, ParcelaManager>();
+builder.Services.AddScoped<IParcelaRepository, ParcelaRepository>();
 #endregion
 
 

@@ -1,4 +1,5 @@
 ﻿using Application.Clientes.DTO;
+using Application.Parcelas.DTO;
 using Domain.Entities;
 using Domain.Enums;
 using System;
@@ -14,7 +15,7 @@ namespace Application.Financiamentos.DTO
         public int Id { get; set; }
         public int TipoFinanciamento { get; set; }
         public string Cpf { get; set; }
-        //public IEnumerable<ParcelaDTO> Parcelas { get; set; }
+        public IEnumerable<ParcelaDTO> Parcelas { get; set; }
         public decimal ValorTotal { get; set; }
         public DateTime DataUltimoVencimento { get; set; }
 
@@ -26,7 +27,8 @@ namespace Application.Financiamentos.DTO
                 Id = financiamento.Id,
                 TipoFinanciamento = (int)financiamento.TipoFinanciamento,
                 ValorTotal = financiamento.ValorTotal,
-                Cpf = financiamento.Cliente.Cpf
+                Cpf = financiamento.Cliente.Cpf,
+                Parcelas = financiamento.Parcelas != null ? financiamento.Parcelas.ToList().Select(x => ParcelaDTO.MapToDTO(x)) : new List<ParcelaDTO>()
             };
         }
 

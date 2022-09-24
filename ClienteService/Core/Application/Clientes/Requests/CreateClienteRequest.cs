@@ -4,6 +4,6 @@ namespace Application.Clientes.Requests
 {
     public class CreateClienteRequest
     {
-        public ClienteDTO Data;
+        public InsertClienteDTO Data;
     }
 }
