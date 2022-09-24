@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{8D248FA9-E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClienteService", "ClienteService", "{732A8F41-21D4-4ED0-B788-97C47DCE6E2A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FinanciamentoService", "FinanciamentoService", "{CA665798-729B-4628-A54A-C2A05B018808}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AnaliseDeCreditoService", "AnaliseDeCreditoService", "{CA665798-729B-4628-A54A-C2A05B018808}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{91084EC7-7C36-4E84-B96B-D844C74B88BA}"
 EndProject
