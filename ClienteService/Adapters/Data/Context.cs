@@ -1,6 +1,7 @@
-﻿using Data.Configuration;
+﻿using Data.Financiamentos;
 using Entities = Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Data.Clientes;
 
 namespace Data
 {

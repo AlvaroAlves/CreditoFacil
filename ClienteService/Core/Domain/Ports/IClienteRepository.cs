@@ -6,5 +6,6 @@ namespace Domain.Ports
     {
         Task<Cliente> Get(string cpf);
         Task<string> Create(Cliente cliente);
+        Task<Cliente> Update(Cliente cliente);
     }
 }

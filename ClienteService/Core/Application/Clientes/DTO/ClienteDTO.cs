@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Financiamentos.DTO;
+using Domain.Entities;
 
 namespace Application.Clientes.DTO
 {
@@ -8,6 +9,7 @@ namespace Application.Clientes.DTO
         public string Nome { get; set; }
         public string UF { get; set; }
         public string Celular { get; set; }
+        public IEnumerable<FinanciamentoDTO> Financiamentos { get; set; }
 
         public static Cliente MapToEntity(ClienteDTO clienteDto)
         {
@@ -27,7 +29,8 @@ namespace Application.Clientes.DTO
                 Cpf = cliente.Cpf,
                 Celular = cliente.Celular,
                 Nome = cliente.Nome,
-                UF = cliente.UF
+                UF = cliente.UF,
+                Financiamentos = cliente.Financiamentos.ToList().Select(x => FinanciamentoDTO.MapToDTO(x))
             };
         }
     }

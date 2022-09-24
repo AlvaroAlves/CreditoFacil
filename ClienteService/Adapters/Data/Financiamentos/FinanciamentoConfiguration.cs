@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Configuration
+namespace Data.Financiamentos
 {
     public class FinanciamentoConfiguration : IEntityTypeConfiguration<Financiamento>
     {

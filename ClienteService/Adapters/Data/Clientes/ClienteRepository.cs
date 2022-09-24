@@ -24,9 +24,16 @@ namespace Data.Clientes
             return cliente.Cpf;
         }
 
+        public async Task<Cliente> Update(Cliente cliente)
+        {
+            _context.Clientes.Update(cliente);
+            await _context.SaveChangesAsync();
+            return cliente;
+        }
+
         public Task<Cliente?> Get(string cpf)
         {
-            return _context.Clientes.Where(c => c.Cpf == cpf).FirstOrDefaultAsync();
+            return _context.Clientes.Where(c => c.Cpf == cpf).Include(x => x.Financiamentos).FirstOrDefaultAsync();
         }
     }
 }

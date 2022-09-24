@@ -37,7 +37,7 @@ namespace Domain.Entities
             }
             else
             {
-                //await _repository.Update(this);
+                await _repository.Update(this);
             }
                 
         }

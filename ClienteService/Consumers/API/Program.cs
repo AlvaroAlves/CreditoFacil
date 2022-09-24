@@ -1,7 +1,9 @@
 using Application;
+using Application.Financiamentos.Ports;
 using Application.Ports;
 using Data;
 using Data.Clientes;
+using Data.Financiamentos;
 using Domain.Ports;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,9 @@ builder.Services.AddControllers();
 #region IoC
 builder.Services.AddScoped<IClienteManager, ClienteManager>();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IFinanciamentoManager, FinanciamentoManager>();
+builder.Services.AddScoped<IFinanciamentoRepository, FinanciamentoRepository>();
+
 #endregion
 
 

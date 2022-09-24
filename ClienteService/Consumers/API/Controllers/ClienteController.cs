@@ -41,7 +41,7 @@ namespace API.Controllers
             return BadRequest(res);
         }
 
-        [HttpGet]
+        [HttpGet("{cpf}")]
         public async Task<ActionResult<ClienteDTO>> Get(string cpf)
         {
             var res = await _clienteManager.GetCliente(cpf);
