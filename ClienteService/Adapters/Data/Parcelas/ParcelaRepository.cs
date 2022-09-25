@@ -25,6 +25,13 @@ namespace Data.Parcelas
             return parcela.Id;
         }
 
+        public async Task<List<Parcela>> CreateRange(IEnumerable<Parcela> parcelas)
+        {
+            _context.Parcelas.AddRange(parcelas);
+            await _context.SaveChangesAsync();
+            return parcelas.ToList();
+        }
+
         public async Task<Parcela> Update(Parcela parcela)
         {
             _context.Parcelas.Update(parcela);

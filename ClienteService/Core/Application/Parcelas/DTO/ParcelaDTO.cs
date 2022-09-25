@@ -36,8 +36,7 @@ namespace Application.Parcelas.DTO
                 ValorParcela = parcela.ValorParcela,
                 DataPagamento = parcela.DataPagamento,
                 NumeroParcela = parcela.NumeroParcela,
-                DataVencimento = parcela.DataVencimento,
-                IdFinanciamento = parcela.Financiamento.Id
+                DataVencimento = parcela.DataVencimento
             };
         }
     }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     [ApiController]
+    [Area("Cliente")]
     [Route("api/[controller]")]
     public class ClienteController : ControllerBase
     {

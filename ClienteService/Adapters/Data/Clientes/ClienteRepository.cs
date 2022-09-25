@@ -33,7 +33,7 @@ namespace Data.Clientes
 
         public Task<Cliente?> Get(string cpf)
         {
-            return _context.Clientes.Where(c => c.Cpf == cpf).Include(x => x.Financiamentos).FirstOrDefaultAsync();
+            return _context.Clientes.Where(c => c.Cpf == cpf).Include(x => x.Financiamentos).ThenInclude(y => y.Parcelas).FirstOrDefaultAsync();
         }
     }
 }

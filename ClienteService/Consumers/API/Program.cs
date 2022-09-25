@@ -1,4 +1,5 @@
 using Application;
+using Application.Contratos.Ports;
 using Application.Financiamentos.Ports;
 using Application.Parcelas.Ports;
 using Application.Ports;
@@ -22,6 +23,7 @@ builder.Services.AddScoped<IFinanciamentoManager, FinanciamentoManager>();
 builder.Services.AddScoped<IFinanciamentoRepository, FinanciamentoRepository>();
 builder.Services.AddScoped<IParcelaManager, ParcelaManager>();
 builder.Services.AddScoped<IParcelaRepository, ParcelaRepository>();
+builder.Services.AddScoped<IContratoManager, ContratoManager>();
 #endregion
 
 

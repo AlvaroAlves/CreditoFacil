@@ -39,8 +39,7 @@ namespace Application.Financiamentos.DTO
                 DataUltimoVencimento = financiamento.DataUltimoVencimento,
                 Id = financiamento.Id,
                 TipoFinanciamento = (TipoFinanciamento)financiamento.TipoFinanciamento,
-                ValorTotal = financiamento.ValorTotal,
-                //Cliente = financiamento.Cliente
+                ValorTotal = financiamento.ValorTotal
             };
         }
     }

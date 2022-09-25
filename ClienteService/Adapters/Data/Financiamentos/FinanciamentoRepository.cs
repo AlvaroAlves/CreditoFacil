@@ -34,7 +34,10 @@ namespace Data.Financiamentos
 
         public async Task<Financiamento?> Get(int id)
         {
-            return await _context.Financiamentos.Where(c => c.Id == id).Include(x => x.Cliente).FirstOrDefaultAsync();
+            return await _context.Financiamentos.Where(c => c.Id == id)
+                .Include(x => x.Cliente)
+                .Include(y => y.Parcelas)
+                .FirstOrDefaultAsync();
         }
     }
 }

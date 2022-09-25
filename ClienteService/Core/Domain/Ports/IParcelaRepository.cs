@@ -11,6 +11,7 @@ namespace Domain.Ports
     {
         Task<Parcela> Get(int id);
         Task<int> Create(Parcela parcela);
+        Task<List<Parcela>> CreateRange(IEnumerable<Parcela> parcelas);
         Task<Parcela> Update(Parcela parcela);
     }
 }
