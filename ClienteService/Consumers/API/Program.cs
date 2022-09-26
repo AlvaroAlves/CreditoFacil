@@ -11,12 +11,14 @@ using Data.Financiamentos;
 using Data.Parcelas;
 using Domain.Ports;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddMediatR(typeof(ContratoManager));
 
 #region IoC
 builder.Services.AddScoped<IClienteManager, ClienteManager>();

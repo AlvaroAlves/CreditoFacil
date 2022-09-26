@@ -35,5 +35,14 @@ namespace Data.Clientes
         {
             return _context.Clientes.Where(c => c.Cpf == cpf).Include(x => x.Financiamentos).ThenInclude(y => y.Parcelas).FirstOrDefaultAsync();
         }
+
+        public async Task<IEnumerable<Cliente>> GetCincoClientesComParcelasEmAtraso()
+        {
+            return _context.Clientes.Where(x => x.Financiamentos.Any(
+                y => y.Parcelas.Any(
+                    z => z.DataVencimento > DateTime.Now.AddDays(5) && z.DataPagamento == null)
+                )
+            ).Include(x => x.Financiamentos).ThenInclude(y => y.Parcelas).Take(4).ToList();
+        }
     }
 }

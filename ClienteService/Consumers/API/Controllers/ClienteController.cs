@@ -1,7 +1,9 @@
 ﻿using Application;
 using Application.Clientes.DTO;
+using Application.Clientes.Queries;
 using Application.Clientes.Requests;
 using Application.Ports;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -13,11 +15,13 @@ namespace API.Controllers
     {
         private readonly ILogger<ClienteController> _logger;
         private readonly IClienteManager _clienteManager;
+        private readonly IMediator _mediator;
 
-        public ClienteController(ILogger<ClienteController> logger, IClienteManager clienteManager)
+        public ClienteController(ILogger<ClienteController> logger, IClienteManager clienteManager, IMediator mediator)
         {
             _logger = logger;
             _clienteManager = clienteManager;
+            _mediator = mediator;
         }
 
         [HttpPost]
@@ -51,6 +55,15 @@ namespace API.Controllers
                 return NotFound(res);
             _logger.LogError("Código de erro não tratado", res);
             return BadRequest(res);
+        }
+
+        [HttpGet]
+        [Route("clientesEmAtraso")]
+        public async Task<ActionResult<List<ClienteDTO>>> Get()
+        {
+            var query = new GetCincoClientesAtrasoQuery();
+            var res = await _mediator.Send(query);
+            return Ok(res);
         }
     }
 }
