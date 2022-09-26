@@ -41,27 +41,12 @@ namespace Application
                         Message = "O Contrato não pode ser salvo, o CPF informado não encontra-se cadastrado no banco de dados."
                     };
 
-                var parcelas = new List<Parcela>();
+                
                 DateTime dataVencimento = contratoRequest.Data.DataPrimeiroVencimento;
                 var valorTotal = contratoRequest.Data.ValorTotal;
                 var quantidadeParcelas = contratoRequest.Data.NumeroDeParcelas;
-                var valorParcela = Math.Truncate((valorTotal / quantidadeParcelas) * 100 / 100);
-                for (int i = 1; i <= quantidadeParcelas; i++)
-                {
-                    if (i == quantidadeParcelas)
-                        valorParcela = valorTotal != (valorParcela * quantidadeParcelas) ? (valorTotal - (valorParcela * (quantidadeParcelas - 1)))  : valorParcela;
-
-                    if (i != 1)
-                        dataVencimento = dataVencimento.AddDays(30);
-
-                    parcelas.Add(new Parcela
-                    {
-                        DataVencimento = dataVencimento,
-                        NumeroParcela = i,
-                        ValorParcela = valorParcela
-                    });
-                }
-
+                var parcelas = GerarListaDeParcelas(quantidadeParcelas, valorTotal,ref dataVencimento);
+                
                 var financiamento = new Financiamento
                 {
                     DataUltimoVencimento = dataVencimento,
@@ -70,7 +55,6 @@ namespace Application
                     ValorTotal = valorTotal,
                     Cliente = cliente
                 };
-
 
                 financiamento.Id = await _financiamentoRepository.Create(financiamento);
                 parcelas.ForEach(x => x.Financiamento = financiamento);
@@ -91,7 +75,30 @@ namespace Application
                     Message = "Não foi possível incluir o cliente no banco."
                 };
             }
+        }
 
+        private static List<Parcela> GerarListaDeParcelas(int quantidadeParcelas, decimal valorTotal, ref DateTime dataVencimento)
+        {
+            var ret = new List<Parcela>();
+            var valorParcela = Math.Truncate((valorTotal / quantidadeParcelas) * 100 / 100);
+
+            for (int i = 1; i <= quantidadeParcelas; i++)
+            {
+                if (i == quantidadeParcelas)
+                    valorParcela = valorTotal != (valorParcela * quantidadeParcelas) ? (valorTotal - (valorParcela * (quantidadeParcelas - 1))) : valorParcela;
+
+                if (i != 1)
+                    dataVencimento = dataVencimento.AddDays(30);
+
+                ret.Add(new Parcela
+                {
+                    DataVencimento = dataVencimento,
+                    NumeroParcela = i,
+                    ValorParcela = valorParcela
+                });
+            }
+
+            return ret;
         }
     }
 }

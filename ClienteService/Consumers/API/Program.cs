@@ -1,4 +1,6 @@
+using AnaliseDeCredito.AnaliseNovaProposta;
 using Application;
+using Application.AnaliseDeCredito;
 using Application.Contratos.Ports;
 using Application.Financiamentos.Ports;
 using Application.Parcelas.Ports;
@@ -24,6 +26,7 @@ builder.Services.AddScoped<IFinanciamentoRepository, FinanciamentoRepository>();
 builder.Services.AddScoped<IParcelaManager, ParcelaManager>();
 builder.Services.AddScoped<IParcelaRepository, ParcelaRepository>();
 builder.Services.AddScoped<IContratoManager, ContratoManager>();
+builder.Services.AddScoped<IAnaliseDeCredito, NovaPropostaAdapter> ();
 #endregion
 
 
