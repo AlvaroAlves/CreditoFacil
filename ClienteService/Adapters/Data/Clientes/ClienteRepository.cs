@@ -44,5 +44,10 @@ namespace Data.Clientes
                 )
             ).Take(4).ToList();
         }
+
+        public async Task<IEnumerable<Cliente>> GetClientesSPParcelasPagas()
+        {
+            return null;
+        }
     }
 }
