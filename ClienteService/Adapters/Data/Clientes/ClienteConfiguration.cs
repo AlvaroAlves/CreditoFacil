@@ -14,7 +14,7 @@ namespace Data.Clientes
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
             builder.HasKey(c => c.Cpf);
-            builder.HasMany(c => c.Financiamentos).WithOne(c => c.Cliente).HasForeignKey("cpf");
+            builder.HasMany(c => c.Financiamentos).WithOne(c => c.Cliente).HasForeignKey("Cpf");
         }
     }
 }

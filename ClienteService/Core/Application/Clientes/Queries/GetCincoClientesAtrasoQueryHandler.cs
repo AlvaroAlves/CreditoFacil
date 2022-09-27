@@ -21,7 +21,9 @@ namespace Application.Clientes.Queries
         public async Task<List<ClienteDTO>> Handle(GetCincoClientesAtrasoQuery request, CancellationToken cancellationToken)
         {
             var clientes = await _repository.GetCincoClientesComParcelasEmAtraso();
-            //
+            if(clientes.Count() > 0)
+                return ClienteDTO.MapListToDTO(clientes);
+            return new List<ClienteDTO>();
         }
     }
 }

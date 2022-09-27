@@ -2,6 +2,7 @@
 using Entities = Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Data.Clientes;
+using Data.Seeds;
 
 namespace Data
 {
@@ -18,6 +19,8 @@ namespace Data
             builder
                 .ApplyConfiguration(new ClienteConfiguration())
                 .ApplyConfiguration(new FinanciamentoConfiguration());
+
+            ClientesSeed.Clientes(builder);
         }
     }
 }

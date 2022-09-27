@@ -42,7 +42,7 @@ namespace Data.Clientes
                 y => y.Parcelas.Any(
                     z => z.DataVencimento > DateTime.Now.AddDays(5) && z.DataPagamento == null)
                 )
-            ).Include(x => x.Financiamentos).ThenInclude(y => y.Parcelas).Take(4).ToList();
+            ).Take(4).ToList();
         }
     }
 }

@@ -22,6 +22,14 @@ namespace Application.Clientes.DTO
             };
         }
 
+        public static List<ClienteDTO> MapListToDTO(IEnumerable<Cliente> clientes)
+        {
+            var list = new List<ClienteDTO>();
+            foreach (Cliente cli in clientes)
+                list.Add(MapToDTO(cli));
+            return list;
+        }
+
         public static Cliente MapToEntity(InsertClienteDTO clienteDto)
         {
             return new Cliente
@@ -41,7 +49,7 @@ namespace Application.Clientes.DTO
                 Celular = cliente.Celular,
                 Nome = cliente.Nome,
                 UF = cliente.UF,
-                Financiamentos = cliente.Financiamentos.ToList().Select(x => FinanciamentoDTO.MapToDTO(x))
+                Financiamentos = cliente.Financiamentos != null ? cliente.Financiamentos.ToList().Select(x => FinanciamentoDTO.MapToDTO(x)) : new List<FinanciamentoDTO>()
             };
         }
     }

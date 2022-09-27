@@ -15,6 +15,7 @@ namespace Domain.Entities
         public Financiamento Financiamento { get; set; }
         public DateTime DataVencimento { get; set; }
         public DateTime? DataPagamento { get; set; }
+        public int IdFinanciamento { get; set; }
 
         private void ValidateState()
         {

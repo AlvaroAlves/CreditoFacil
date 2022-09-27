@@ -13,6 +13,7 @@ namespace Data.Financiamentos
     {
         public void Configure(EntityTypeBuilder<Financiamento> builder)
         {
+            builder.HasAlternateKey(c => c.Cpf);
             builder.HasMany(c => c.Parcelas).WithOne(c => c.Financiamento).HasForeignKey("IdFinanciamento");
         }
     }
